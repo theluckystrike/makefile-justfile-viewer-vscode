@@ -1,0 +1,17 @@
+# Clean Justfile sample
+app := "billing-api"
+build_dir := "dist"
+
+default: test
+
+build:
+  go build -o {{build_dir}}/{{app}} ./cmd/server
+
+test: build
+  go test ./...
+
+clean:
+  rm -rf "{{build_dir}}"
+
+release tag: test
+  echo "Releasing {{app}} {{tag}}"

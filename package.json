@@ -1,0 +1,326 @@
+{
+  "name": "zovo-makefile-justfile-viewer",
+  "displayName": "Makefile & Justfile Graph View",
+  "description": "Inspect Makefile, GNUmakefile, *.mk, justfile, Justfile and *.just offline in VS Code: target and recipe dependency DAG, .PHONY and variable table, command summary and static findings without running make or just.",
+  "version": "0.1.0",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0F172A",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/makefile-justfile-viewer-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/theluckystrike/makefile-justfile-viewer-vscode/issues"
+  },
+  "homepage": "https://github.com/theluckystrike/makefile-justfile-viewer-vscode#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "makefile",
+    "justfile",
+    "make",
+    "just",
+    "build",
+    "graph",
+    "dag",
+    "audit"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onUri",
+    "onCustomEditor:zovo-makeview.viewer"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "zovo-makeview.viewer",
+        "displayName": "Makefile & Justfile Graph View",
+        "selector": [
+          {
+            "filenamePattern": "Makefile"
+          },
+          {
+            "filenamePattern": "GNUmakefile"
+          },
+          {
+            "filenamePattern": "*.mk"
+          },
+          {
+            "filenamePattern": "justfile"
+          },
+          {
+            "filenamePattern": "Justfile"
+          },
+          {
+            "filenamePattern": "*.just"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "zovoMakeview.openWith",
+        "title": "Open in Makefile & Justfile Graph View",
+        "category": "Makefile & Justfile Graph View",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "zovoMakeview.openSample",
+        "title": "Open the Sample Makefile",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.openWalkthrough",
+        "title": "Get Started",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.moreViewers",
+        "title": "More free tools by Zovo",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.supportDeveloper",
+        "title": "Support the developer",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.auditBuildFile",
+        "title": "Audit Makefile or Justfile safety (Pro, 1 free try)",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.diffBuildFiles",
+        "title": "Compare two build files (Pro, 1 free try)",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.exportTargetGraph",
+        "title": "Export target DAG and catalog (Pro, 1 free try)",
+        "category": "Makefile & Justfile Graph View"
+      },
+      {
+        "command": "zovoMakeview.zovoPro.auditBuildFile",
+        "title": "Zovo Pro: Audit Makefile or Justfile safety"
+      },
+      {
+        "command": "zovoMakeview.zovoPro.diffBuildFiles",
+        "title": "Zovo Pro: Compare two build files"
+      },
+      {
+        "command": "zovoMakeview.zovoPro.exportTargetGraph",
+        "title": "Zovo Pro: Export target DAG and catalog"
+      },
+      {
+        "command": "zovoMakeview.zovoTitle.auditBuildFile",
+        "title": "Zovo Pro: Audit Makefile or Justfile safety"
+      },
+      {
+        "command": "zovoMakeview.zovoTitle.diffBuildFiles",
+        "title": "Zovo Pro: Compare two build files"
+      },
+      {
+        "command": "zovoMakeview.zovoTitle.exportTargetGraph",
+        "title": "Zovo Pro: Export target DAG and catalog"
+      },
+      {
+        "command": "zovoMakeview.getPro",
+        "title": "Get Zovo Pro (USD 19 once, all Zovo extensions)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoMakeview.payWithPayPal",
+        "title": "Pay for Zovo Pro with PayPal (USD 19, team of 5 USD 59)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoMakeview.unlockWithSponsors",
+        "title": "I already paid: unlock with GitHub Sponsors",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoMakeview.enterLicenseKey",
+        "title": "Enter Zovo Pro license key",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoMakeview.removeLicense",
+        "title": "Remove Zovo Pro from this editor",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoMakeview.payByCard",
+        "title": "Pay for Zovo Pro by card (USD 19)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoMakeview.enterKey",
+        "title": "Enter a key",
+        "category": "Zovo Pro"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "zovoMakeview.zovoTitle.auditBuildFile",
+          "when": "activeCustomEditorId == 'zovo-makeview.viewer' && config.zovoMakeview.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "zovoMakeview.zovoTitle.diffBuildFiles",
+          "when": "activeCustomEditorId == 'zovo-makeview.viewer' && config.zovoMakeview.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "zovoMakeview.zovoTitle.exportTargetGraph",
+          "when": "activeCustomEditorId == 'zovo-makeview.viewer' && config.zovoMakeview.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "zovoMakeview.openWith",
+          "when": "resourceFilename =~ /^(Makefile|GNUmakefile|.*\\.mk|justfile|Justfile|.*\\.just)$/i && !explorerResourceIsFolder",
+          "group": "navigation@9"
+        },
+        {
+          "command": "zovoMakeview.zovoPro.auditBuildFile",
+          "when": "resourceFilename =~ /^(Makefile|GNUmakefile|.*\\.mk|justfile|Justfile|.*\\.just)$/i && !explorerResourceIsFolder && config.zovoMakeview.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "zovoMakeview.zovoPro.diffBuildFiles",
+          "when": "resourceFilename =~ /^(Makefile|GNUmakefile|.*\\.mk|justfile|Justfile|.*\\.just)$/i && !explorerResourceIsFolder && config.zovoMakeview.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "zovoMakeview.zovoPro.exportTargetGraph",
+          "when": "resourceFilename =~ /^(Makefile|GNUmakefile|.*\\.mk|justfile|Justfile|.*\\.just)$/i && !explorerResourceIsFolder && config.zovoMakeview.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "zovoMakeview.auditBuildFile",
+          "when": "config.zovoMakeview.showProTools"
+        },
+        {
+          "command": "zovoMakeview.diffBuildFiles",
+          "when": "config.zovoMakeview.showProTools"
+        },
+        {
+          "command": "zovoMakeview.exportTargetGraph",
+          "when": "config.zovoMakeview.showProTools"
+        },
+        {
+          "command": "zovoMakeview.zovoPro.auditBuildFile",
+          "when": "false"
+        },
+        {
+          "command": "zovoMakeview.zovoPro.diffBuildFiles",
+          "when": "false"
+        },
+        {
+          "command": "zovoMakeview.zovoPro.exportTargetGraph",
+          "when": "false"
+        },
+        {
+          "command": "zovoMakeview.zovoTitle.auditBuildFile",
+          "when": "false"
+        },
+        {
+          "command": "zovoMakeview.zovoTitle.diffBuildFiles",
+          "when": "false"
+        },
+        {
+          "command": "zovoMakeview.zovoTitle.exportTargetGraph",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Makefile & Justfile Graph View",
+      "properties": {
+        "zovoMakeview.maxFileMB": {
+          "type": "number",
+          "default": 16,
+          "minimum": 1,
+          "maximum": 128,
+          "description": "Files up to this size open in Makefile & Justfile Graph View."
+        },
+        "zovoMakeview.pageSize": {
+          "type": "number",
+          "default": 100,
+          "minimum": 20,
+          "maximum": 500,
+          "description": "Targets and variables shown on one page."
+        },
+        "zovoMakeview.showProTools": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Zovo Pro tools (safety audit, build file diff and target DAG export) in the Command Palette, the Explorer menu, the editor title menu and the viewer toolbar. Everything free stays visible."
+        },
+        "zovoMakeview.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask once for a store rating after 3 Makefiles or Justfiles open without an error across 2 days. Choosing No thanks never asks again. Nothing is sent anywhere."
+        },
+        "zovoMakeview.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Rate, More free tools and Zovo Pro links at the bottom of the viewer. Nothing is sent anywhere."
+        },
+        "zovo.makeview.trial.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 7-day Zovo Pro trial button in the Pro panel."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "zovoMakeview.start",
+        "title": "Get started with Makefile & Justfile Graph View",
+        "description": "Inspect Makefile, GNUmakefile, *.mk, justfile, Justfile and *.just files offline in VS Code.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open a Makefile or Justfile",
+            "description": "Click any Makefile, GNUmakefile, *.mk, justfile, Justfile or *.just file in the Explorer, or run Open in Makefile & Justfile Graph View.\n[Open the sample Makefile](command:zovoMakeview.openSample)",
+            "media": {
+              "image": "images/screenshot.png",
+              "altText": "A Makefile open in the viewer showing the target dependency DAG, .PHONY and variable table, recipe commands, and static safety findings."
+            },
+            "completionEvents": [
+              "onCommand:zovoMakeview.openSample"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "package": "npx -y @vscode/vsce@3 package --no-dependencies"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike/sponsorships?tier_id=679878"
+  }
+}
